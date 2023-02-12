@@ -1,0 +1,164 @@
+---
+title: "Data Science Tapas"
+subtitle: "REDCap to R Markdown, reproducibly"
+author: "Heidi Steiner"
+date: "February 16, 2023"
+footer: "https://github.com/ua-data7/DS-Tapas/Workshops/Spring2023/redcapAPI"
+format:
+  revealjs:
+    theme: [default, assets/custom.scss]
+    logo: assets/dsi.png
+    auto-play-media: true
+---
+
+## On Today's Menu
+
+-   Discuss
+    -   REDCap
+
+    -   Data extraction from an API
+
+    -   `REDCapTidieR` to "tidy" REDCap output
+-   Demo
+    -   REDCap API Creation 🔌
+
+    -   API storage in `.Renviron` 🔐
+
+    -   `REDCapTidieR` to pull data 🧹
+
+    -   Render a reproducible `.rmd` report 🧶
+
+::: footer
+So many thanks to [Richard Hanna](https://www.richardshanna.com/) for their work on REDCapTidieR!
+:::
+
+::: notes
+Due to the nature of the topic, there won't be any hands-on component
+
+However there are still course materials
+:::
+
+## What is REDCap? {.smaller}
+
+![](assets/images/redcapLogo.png){fig-align="center" width="650"}
+
+-   Free[^1] database solution for research
+-   Secure and accessible from a web browser
+-   Can collect "any type of data in any environment"
+-   Particularly useful for compliance with 21 CFR Part 11, HIPAA, etc.
+-   Requires little to get up and running, but offers complexity as needed
+
+[^1]: For participants of the REDCap consortium
+
+::: notes
+REDCap is a powerful database solution used by many research institutions. The web interface offers a secure, accessible way to architect databases of varying complexity at no cost to the institution for joining the REDCap consortium.
+
+You can access REDCap on the web from anywhere, and it can store any data you can realistically imagine for research purposes. It is also attractive to research institutions for being capable of clearance for various compliance requirements.
+
+In my opinion, REDCap is strongest in it's front end UI ability to supply users with the tools to make databases quickly and with plenty of customization, but also provides complexity to those who wish to use it.
+:::
+
+## What is REDCap? {.smaller}
+
+::: columns
+::: {.column width="50%"}
+Record Status Dashboard
+:::
+
+::: {.column width="50%"}
+Front-End Data Entry UI
+:::
+:::
+
+> REDCap functions as a large data table, but data distribution can be complex depending on architectural choices. Repeating instances can create headaches on the backend.
+
+::: notes
+The REDCap front-end consists of many tools but the two we're interested in are the top-level database display, known as the record status dashboard, and the actual area that data entry personnel enter data.
+
+Here on the left is a visual representation of what essentially amounts to a tabular structure. We have a record ID, and two "instruments" with underlying data. The first is a single sub-table or "form", while the second is stacked or "repeating." We'll touch more on these shortly but they can be a bit cumbersome to work with.
+
+On the right is a drilled-down display where the data gets entered. Here we see all of the Heroes Information associated with Record ID number 0. You can think of these as the column data elements tied to a single row for the hero A-Bomb.
+
+Because of this, as mentioned earlier, REDCap can be about as complex as you want or need it to be
+:::
+
+## The *reproducibility* problem
+
+![](assets/images/Screen%20Shot%202023-02-12%20at%2011.36.28%20AM.png){fig-alt="Screenshot of user interface with more than 15 options for exporting data" fig-align="center"}
+
+::: notes
+remembering and documenting all the selections and options here get's tedious
+
+Files are also representative of huge databases and thus - massive
+:::
+
+## **REDCap to R via API**
+
+-   APIs allow data requests between programs
+-   [\>10 R packages that interact with REDCap](https://redcap-tools.github.io/projects/)
+
+![](assets/images/redcapAPIScreenshot.jpeg){fig-align="center"}
+
+::: footer
+Check out the [`tidyREDCap` documentation](https://raymondbalise.github.io/tidyREDCap/articles/useAPI.html) to read more!
+:::
+
+::: notes
+application programming interface (API)
+:::
+
+## Example Output via `REDCapR` {.smaller}
+
+```{r}
+#| echo: true
+#| eval: false
+#| cache: true
+
+# Load applicable libraries:
+library(dplyr)
+library(REDCapR)
+
+superheroes_db <- redcap_read_oneshot("https://redcap.uahs.arizona.edu/api/"
+                                      , "superheroes_token"
+                                      , verbose = FALSE)$data
+
+superheroes_db %>% 
+  glimpse()
+```
+
+![](assets/images/Screen%20Shot%202023-02-11%20at%204.13.00%20PM.png){fig-align="center"}
+
+::: notes
+Let's first load some applicable libraries and extract both the data and metadata of the database. A glimpse of the database shows us 6,700 rows with 16 columns, but oddly we seem to have a lot of `NA`s/missing data. And what might be a little more confusing is that our record_IDs are being repeated a number of times.
+
+Lastly, there are two variables here (`redcap_repeat_instrument` and `redcap_repeat_instance`) which weren't in our original database from the user side. They'll be coming up a lot today.
+
+Let's look at a tibble structure to see if we can piece why this is.
+:::
+
+## The *redcap* problem
+
+-   Empty data introduced as an artifact of repeating instruments
+-   Data export is often times large and unwieldy
+-   Missing metadata linking field association to instruments
+-   Row identification is confusing and inconsistentThere are a number of problems with this which anyone here who has worked with repeating instruments or longitudinal REDCap projects has probably run into.
+
+::: notes
+First: empty data shown by all those `NA` values is not actually indicative of missingness, instead this is an artifact introduced as a side effect of having these compound keys tied to repeating instruments. This can force analysts to go back and either recreate data they need or jump through hoops to make up for data sparsity.
+
+Second: Data exports often wind up becoming much larger than anticipated because of how many rows get introduced, making exports messy and unwieldy.
+
+Third: Without an innate link to the metadata, it isn't possible from the data export to determine what forms are linked to what instrument. This can be a problem in longitudinal studies when you want to reference variables that only appear in specific events.
+
+Fourth: Row identification is confusing and inconsistent. As we saw, compound keys make for variable row identifiers that may or may not contain all of the data analysts need.
+:::
+
+## `REDCapTidieR`
+
+![](assets/images/redcaptidier-viewer-supertibble.gif){fig-align="center"}
+
+::: footer
+Hanna R, Kadauke S, Porter E (2023). *REDCapTidieR: Extract 'REDCap' Databases into Tidy 'Tibble's*. https://chop-cgtinformatics.github.io/REDCapTidieR/, https://github.com/CHOP-CGTInformatics/REDCapTidieR.
+:::
+
+## Demo ▶️

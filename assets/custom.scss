@@ -1,0 +1,47 @@
+/*-- scss:defaults --*/
+$theme-black: #292F36;
+$theme-pink: #EF4056;
+$theme-ltpink: #FFDDE1;
+$theme-red: #8B0015;
+
+$body-color: $theme-black;
+$link-color: $theme-pink;
+/*-- scss:rules --*/
+/*
+
+.title-slide p {
+  background-color: $theme-white !important;
+  color: $theme-green !important;
+} 
+*/ 
+
+h1 {
+  color: $theme-red !important;
+}
+.darkbackground h2 {
+  color: $theme-red;
+}
+
+.footer {
+/*  margin-right: 80px !important;
+  margin-left: 10px !important;*/
+  margin-bottom: 25px !important;
+  color: $theme-red !important;
+  size: .25em !important;
+}
+
+.footerDark {
+/*  margin-right: 80px !important;
+  margin-left: 10px !important;*/
+  margin-bottom: 15px !important;
+  color: $theme-red !important;
+}
+
+.reveal .callout-important {
+  position: fixed !important;
+  bottom: 20px !important;
+}
+
+.reveal blockquote {
+  color: $theme-red !important;
+}
