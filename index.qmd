@@ -14,15 +14,11 @@ format:
 ## On Today's Menu
 
 -   Discuss
-    -   REDCap
-
-    -   Data extraction from an API
+    -   REDCap + data extraction from an API
 
     -   `REDCapTidieR` to "tidy" REDCap output
 -   Demo
-    -   REDCap API Creation 🔌
-
-    -   API storage in `.Renviron` 🔐
+    -   REDCap API Creation 🔌 and storage in `.Renviron` 🔐
 
     -   `REDCapTidieR` to pull data 🧹
 
@@ -40,7 +36,7 @@ However there are still course materials
 
 ## What is REDCap? {.smaller}
 
-![](assets/images/redcapLogo.png){fig-align="center" width="650"}
+![](assets/images/redcapLogo.png){style="margin-bottom: -10px;" fig-align="center" width="650"}
 
 -   Free[^1] database solution for research
 -   Secure and accessible from a web browser
@@ -63,10 +59,14 @@ In my opinion, REDCap is strongest in it's front end UI ability to supply users 
 ::: columns
 ::: {.column width="50%"}
 Record Status Dashboard
+
+![](assets/images/redcap_record_status_dash.png){fig-align="center"}
 :::
 
 ::: {.column width="50%"}
 Front-End Data Entry UI
+
+![](assets/images/redcap_data_entry_example1.png){fig-align="center"}
 :::
 :::
 
@@ -84,7 +84,7 @@ Because of this, as mentioned earlier, REDCap can be about as complex as you wan
 
 ## The *reproducibility* problem
 
-![](assets/images/Screen%20Shot%202023-02-12%20at%2011.36.28%20AM.png){fig-alt="Screenshot of user interface with more than 15 options for exporting data" fig-align="center"}
+![](assets/images/Screen%20Shot%202023-02-12%20at%2011.36.28%20AM.png){fig-alt="Screenshot of user interface with more than 15 options for exporting data" fig-align="center" width="2500"}
 
 ::: notes
 remembering and documenting all the selections and options here get's tedious
@@ -94,12 +94,19 @@ Files are also representative of huge databases and thus - massive
 
 ## **REDCap to R via API**
 
+::: columns
+::: {.column style="width: 30%;"}
 -   APIs allow data requests between programs
 -   [\>10 R packages that interact with REDCap](https://redcap-tools.github.io/projects/)
+:::
 
+::: {.column style="width: 60%;"}
 ![](assets/images/redcapAPIScreenshot.jpeg){fig-align="center"}
+:::
+:::
 
 ::: footer
+
 Check out the [`tidyREDCap` documentation](https://raymondbalise.github.io/tidyREDCap/articles/useAPI.html) to read more!
 :::
 
@@ -161,4 +168,10 @@ Fourth: Row identification is confusing and inconsistent. As we saw, compound ke
 Hanna R, Kadauke S, Porter E (2023). *REDCapTidieR: Extract 'REDCap' Databases into Tidy 'Tibble's*. https://chop-cgtinformatics.github.io/REDCapTidieR/, https://github.com/CHOP-CGTInformatics/REDCapTidieR.
 :::
 
-## Demo ▶️
+## Demo ▶️ {.center}
+
+-   REDCap API Creation 🔌 and storage in `.Renviron` 🔐
+
+-   `REDCapTidieR` to pull data 🧹
+
+-   Render a reproducible `.rmd` report 🧶

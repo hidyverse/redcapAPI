@@ -400,14 +400,12 @@
 <ul>
 <li>Discuss
 <ul>
-<li><p>REDCap</p></li>
-<li><p>Data extraction from an API</p></li>
+<li><p>REDCap + data extraction from an API</p></li>
 <li><p><code>REDCapTidieR</code> to “tidy” REDCap output</p></li>
 </ul></li>
 <li>Demo
 <ul>
-<li><p>REDCap API Creation 🔌</p></li>
-<li><p>API storage in <code>.Renviron</code> 🔐</p></li>
+<li><p>REDCap API Creation 🔌 and storage in <code>.Renviron</code> 🔐</p></li>
 <li><p><code>REDCapTidieR</code> to pull data 🧹</p></li>
 <li><p>Render a reproducible <code>.rmd</code> report 🧶</p></li>
 </ul></li>
@@ -432,7 +430,7 @@
 </section>
 <section id="what-is-redcap" class="slide level2 smaller">
 <h2>What is REDCap?</h2>
-<div class="quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center" style="margin-bottom: -10px;">
 <figure>
 <p><img data-src="assets/images/redcapLogo.png" width="650"></p>
 </figure>
@@ -465,8 +463,18 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p>Record Status Dashboard</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/images/redcap_record_status_dash.png"></p>
+</figure>
+</div>
 </div><div class="column" style="width:50%;">
 <p>Front-End Data Entry UI</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/images/redcap_data_entry_example1.png"></p>
+</figure>
+</div>
 </div>
 </div>
 <blockquote>
@@ -492,7 +500,7 @@
 <section id="the-reproducibility-problem" class="slide level2">
 <h2>The <em>reproducibility</em> problem</h2>
 
-<img data-src="assets/images/Screen%20Shot%202023-02-12%20at%2011.36.28%20AM.png" alt="Screenshot of user interface with more than 15 options for exporting data" class="r-stretch quarto-figure-center"><aside class="notes">
+<img data-src="assets/images/Screen%20Shot%202023-02-12%20at%2011.36.28%20AM.png" alt="Screenshot of user interface with more than 15 options for exporting data" width="2500" class="r-stretch quarto-figure-center"><aside class="notes">
 <p>remembering and documenting all the selections and options here get’s tedious</p>
 <p>Files are also representative of huge databases and thus - massive</p>
 <style type="text/css">
@@ -509,12 +517,21 @@
 </section>
 <section id="redcap-to-r-via-api" class="slide level2">
 <h2><strong>REDCap to R via API</strong></h2>
+<div class="columns">
+<div class="column" style="width: 30%;">
 <ul>
 <li>APIs allow data requests between programs</li>
 <li><a href="https://redcap-tools.github.io/projects/">&gt;10 R packages that interact with REDCap</a></li>
 </ul>
-
-<img data-src="assets/images/redcapAPIScreenshot.jpeg" class="r-stretch quarto-figure-center"><div class="footer">
+</div><div class="column" style="width: 60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/images/redcapAPIScreenshot.jpeg"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="footer">
 <p>Check out the <a href="https://raymondbalise.github.io/tidyREDCap/articles/useAPI.html"><code>tidyREDCap</code> documentation</a> to read more!</p>
 </div>
 <aside class="notes">
@@ -594,8 +611,13 @@
 <p>Hanna R, Kadauke S, Porter E (2023). <em>REDCapTidieR: Extract ‘REDCap’ Databases into Tidy ’Tibble’s</em>. https://chop-cgtinformatics.github.io/REDCapTidieR/, https://github.com/CHOP-CGTInformatics/REDCapTidieR.</p>
 </div>
 </section>
-<section id="demo" class="slide level2">
+<section id="demo" class="slide level2 center">
 <h2>Demo ▶️</h2>
+<ul>
+<li><p>REDCap API Creation 🔌 and storage in <code>.Renviron</code> 🔐</p></li>
+<li><p><code>REDCapTidieR</code> to pull data 🧹</p></li>
+<li><p>Render a reproducible <code>.rmd</code> report 🧶</p></li>
+</ul>
 
 <img src="assets/dsi.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p>https://github.com/ua-data7/DS-Tapas/Workshops/Spring2023/redcapAPI</p>
