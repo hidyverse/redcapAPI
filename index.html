@@ -403,7 +403,7 @@
 <li><p>REDCap + data extraction from an API</p></li>
 <li><p><code>REDCapTidieR</code> to “tidy” REDCap output</p></li>
 </ul></li>
-<li>Demo
+<li>Hands-on
 <ul>
 <li><p>REDCap API Creation 🔌 and storage in <code>.Renviron</code> 🔐</p></li>
 <li><p><code>REDCapTidieR</code> to pull data 🧹</p></li>
@@ -413,20 +413,6 @@
 <div class="footer">
 <p>So many thanks to <a href="https://www.richardshanna.com/">Richard Hanna</a> for their work on REDCapTidieR!</p>
 </div>
-<aside class="notes">
-<p>Due to the nature of the topic, there won’t be any hands-on component</p>
-<p>However there are still course materials</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section id="what-is-redcap" class="slide level2 smaller">
 <h2>What is REDCap?</h2>
@@ -500,7 +486,7 @@
 <section id="the-reproducibility-problem" class="slide level2">
 <h2>The <em>reproducibility</em> problem</h2>
 
-<img data-src="assets/images/Screen%20Shot%202023-02-12%20at%2011.36.28%20AM.png" alt="Screenshot of user interface with more than 15 options for exporting data" width="2500" class="r-stretch quarto-figure-center"><aside class="notes">
+<img data-src="assets/images/Screen%20Shot%202023-02-12%20at%2011.36.28%20AM.png" alt="Screenshot of user interface with more than 15 options for exporting data" width="1702" class="r-stretch quarto-figure-center"><aside class="notes">
 <p>remembering and documenting all the selections and options here get’s tedious</p>
 <p>Files are also representative of huge databases and thus - massive</p>
 <style type="text/css">
@@ -563,7 +549,7 @@
 <span id="cb1-10"><a href="#cb1-10"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="assets/images/Screen%20Shot%202023-02-11%20at%204.13.00%20PM.png" class="r-stretch quarto-figure-center"><aside class="notes">
+<img data-src="assets/images/Screen%20Shot%202023-02-11%20at%204.13.00%20PM.png" width="1113" class="r-stretch quarto-figure-center"><aside class="notes">
 <p>Let’s first load some applicable libraries and extract both the data and metadata of the database. A glimpse of the database shows us 6,700 rows with 16 columns, but oddly we seem to have a lot of <code>NA</code>s/missing data. And what might be a little more confusing is that our record_IDs are being repeated a number of times.</p>
 <p>Lastly, there are two variables here (<code>redcap_repeat_instrument</code> and <code>redcap_repeat_instance</code>) which weren’t in our original database from the user side. They’ll be coming up a lot today.</p>
 <p>Let’s look at a tibble structure to see if we can piece why this is.</p>

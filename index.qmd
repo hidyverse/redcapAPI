@@ -17,7 +17,7 @@ format:
     -   REDCap + data extraction from an API
 
     -   `REDCapTidieR` to "tidy" REDCap output
--   Demo
+-   Hands-on
     -   REDCap API Creation 🔌 and storage in `.Renviron` 🔐
 
     -   `REDCapTidieR` to pull data 🧹
@@ -26,12 +26,6 @@ format:
 
 ::: footer
 So many thanks to [Richard Hanna](https://www.richardshanna.com/) for their work on REDCapTidieR!
-:::
-
-::: notes
-Due to the nature of the topic, there won't be any hands-on component
-
-However there are still course materials
 :::
 
 ## What is REDCap? {.smaller}
@@ -84,7 +78,7 @@ Because of this, as mentioned earlier, REDCap can be about as complex as you wan
 
 ## The *reproducibility* problem
 
-![](assets/images/Screen%20Shot%202023-02-12%20at%2011.36.28%20AM.png){fig-alt="Screenshot of user interface with more than 15 options for exporting data" fig-align="center" width="2500"}
+![](assets/images/Screen%20Shot%202023-02-12%20at%2011.36.28%20AM.png){fig-alt="Screenshot of user interface with more than 15 options for exporting data" fig-align="center" width="1702"}
 
 ::: notes
 remembering and documenting all the selections and options here get's tedious
@@ -106,7 +100,6 @@ Files are also representative of huge databases and thus - massive
 :::
 
 ::: footer
-
 Check out the [`tidyREDCap` documentation](https://raymondbalise.github.io/tidyREDCap/articles/useAPI.html) to read more!
 :::
 
@@ -133,7 +126,7 @@ superheroes_db %>%
   glimpse()
 ```
 
-![](assets/images/Screen%20Shot%202023-02-11%20at%204.13.00%20PM.png){fig-align="center"}
+![](assets/images/Screen%20Shot%202023-02-11%20at%204.13.00%20PM.png){fig-align="center" width="1113"}
 
 ::: notes
 Let's first load some applicable libraries and extract both the data and metadata of the database. A glimpse of the database shows us 6,700 rows with 16 columns, but oddly we seem to have a lot of `NA`s/missing data. And what might be a little more confusing is that our record_IDs are being repeated a number of times.
