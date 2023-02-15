@@ -398,6 +398,7 @@
 <section id="on-todays-menu" class="slide level2">
 <h2>On Today’s Menu</h2>
 <ul>
+<li>Prep workspace</li>
 <li>Discuss
 <ul>
 <li><p>REDCap + data extraction from an API</p></li>
@@ -410,11 +411,24 @@
 <li><p>Render a reproducible <code>.rmd</code> report 🧶</p></li>
 </ul></li>
 </ul>
-<div class="footer">
-<p>So many thanks to <a href="https://www.richardshanna.com/">Richard Hanna</a> for their work on REDCapTidieR!</p>
-</div>
 </section>
-<section id="what-is-redcap" class="slide level2 smaller">
+<section id="prepare-rstudio" class="slide level2">
+<h2>Prepare RStudio</h2>
+<ul>
+<li>File &gt; New R Markdown file</li>
+<li>Replace contents with that of <a href="https://github.com/ua-data7/DS-Tapas/blob/main/Workshops/Spring2023/redcapAPI/rmarkdownReport.Rmd"><code>rmarkdownReport.Rmd</code></a></li>
+<li>Install necessary packages</li>
+</ul>
+<!-- -->
+<pre><code>install.packages(c(
+"knitr"
+, "REDCapR"
+, "REDCapTidieR"
+, "tableone"
+, "tidyverse"
+, "usethis")) </code></pre>
+</section>
+<section id="what-is-redcap" class="slide level2">
 <h2>What is REDCap?</h2>
 <div class="quarto-figure quarto-figure-center" style="margin-bottom: -10px;">
 <figure>
@@ -428,6 +442,9 @@
 <li>Particularly useful for compliance with 21 CFR Part 11, HIPAA, etc.</li>
 <li>Requires little to get up and running, but offers complexity as needed</li>
 </ul>
+<div class="footer">
+<p>So many thanks to <a href="https://www.richardshanna.com/">Richard Hanna</a> for their work on REDCapTidieR!</p>
+</div>
 <aside class="notes">
 <p>REDCap is a powerful database solution used by many research institutions. The web interface offers a secure, accessible way to architect databases of varying complexity at no cost to the institution for joining the REDCap consortium.</p>
 <p>You can access REDCap on the web from anywhere, and it can store any data you can realistically imagine for research purposes. It is also attractive to research institutions for being capable of clearance for various compliance requirements.</p>
@@ -444,7 +461,7 @@
           display:block!important;
       }</style></aside>
 <aside><ol class="aside-footnotes"><li id="fn1"><p>For participants of the REDCap consortium</p></li></ol></aside></section>
-<section id="what-is-redcap-1" class="slide level2 smaller">
+<section id="what-is-redcap-1" class="slide level2">
 <h2>What is REDCap?</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -537,16 +554,16 @@
 <section id="example-output-via-redcapr" class="slide level2 smaller">
 <h2>Example Output via <code>REDCapR</code></h2>
 <div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-1_063cc07fa80199272e9f9797001a461a">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Load applicable libraries:</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(REDCapR)</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a>superheroes_db <span class="ot">&lt;-</span> <span class="fu">redcap_read_oneshot</span>(<span class="st">"https://redcap.uahs.arizona.edu/api/"</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>                                      , <span class="st">"superheroes_token"</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>                                      , <span class="at">verbose =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>data</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a>superheroes_db <span class="sc">%&gt;%</span> </span>
-<span id="cb1-10"><a href="#cb1-10"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Load applicable libraries:</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">library</span>(REDCapR)</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>superheroes_db <span class="ot">&lt;-</span> <span class="fu">redcap_read_oneshot</span>(<span class="st">"https://redcap.uahs.arizona.edu/api/"</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>                                      , <span class="st">"superheroes_token"</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>                                      , <span class="at">verbose =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>data</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a>superheroes_db <span class="sc">%&gt;%</span> </span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img data-src="assets/images/Screen%20Shot%202023-02-11%20at%204.13.00%20PM.png" width="1113" class="r-stretch quarto-figure-center"><aside class="notes">
@@ -568,11 +585,14 @@
 <section id="the-redcap-problem" class="slide level2">
 <h2>The <em>redcap</em> problem</h2>
 <ul>
-<li>Empty data introduced as an artifact of repeating instruments</li>
-<li>Data export is often times large and unwieldy</li>
-<li>Missing metadata linking field association to instruments</li>
-<li>Row identification is confusing and inconsistentThere are a number of problems with this which anyone here who has worked with repeating instruments or longitudinal REDCap projects has probably run into.</li>
+<li><p>Empty data introduced as an artifact of repeating instruments</p></li>
+<li><p>Data export is often times large and unwieldy</p></li>
+<li><p>Missing metadata linking field association to instruments</p></li>
+<li><p>Row identification is confusing and inconsistent</p></li>
 </ul>
+<blockquote>
+<p>There are a number of problems with this which anyone here who has worked with repeating instruments or longitudinal REDCap projects has probably run into.</p>
+</blockquote>
 <aside class="notes">
 <p>First: empty data shown by all those <code>NA</code> values is not actually indicative of missingness, instead this is an artifact introduced as a side effect of having these compound keys tied to repeating instruments. This can force analysts to go back and either recreate data they need or jump through hoops to make up for data sparsity.</p>
 <p>Second: Data exports often wind up becoming much larger than anticipated because of how many rows get introduced, making exports messy and unwieldy.</p>
@@ -597,12 +617,20 @@
 <p>Hanna R, Kadauke S, Porter E (2023). <em>REDCapTidieR: Extract ‘REDCap’ Databases into Tidy ’Tibble’s</em>. https://chop-cgtinformatics.github.io/REDCapTidieR/, https://github.com/CHOP-CGTInformatics/REDCapTidieR.</p>
 </div>
 </section>
-<section id="demo" class="slide level2 center">
-<h2>Demo ▶️</h2>
+<section id="lets-try" class="slide level2 center">
+<h2>Let’s Try! ▶️</h2>
 <ul>
 <li><p>REDCap API Creation 🔌 and storage in <code>.Renviron</code> 🔐</p></li>
 <li><p><code>REDCapTidieR</code> to pull data 🧹</p></li>
 <li><p>Render a reproducible <code>.rmd</code> report 🧶</p></li>
+</ul>
+</section>
+<section id="buen-provecho" class="slide level2">
+<h2>Buen Provecho!</h2>
+<ul>
+<li><a href="https://uarizona.co1.qualtrics.com/jfe/form/SV_dmxCZsorVVr5lA2">Provide Tapas Feedback</a></li>
+<li><a href="https://uarizona.co1.qualtrics.com/jfe/form/SV_7V8weDrKwCMbXCK">Request a consulatation</a></li>
+<li>Find more <a href="https://cb2.uahs.arizona.edu/redcap">REDCap resources at UArizona</a></li>
 </ul>
 
 <img src="assets/dsi.png" class="slide-logo r-stretch"><div class="footer footer-default">

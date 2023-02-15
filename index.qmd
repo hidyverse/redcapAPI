@@ -13,6 +13,7 @@ format:
 
 ## On Today's Menu
 
+-   Prep workspace
 -   Discuss
     -   REDCap + data extraction from an API
 
@@ -24,11 +25,23 @@ format:
 
     -   Render a reproducible `.rmd` report 🧶
 
-::: footer
-So many thanks to [Richard Hanna](https://www.richardshanna.com/) for their work on REDCapTidieR!
-:::
+## Prepare RStudio
 
-## What is REDCap? {.smaller}
+-   File \> New R Markdown file
+-   Replace contents with that of [`rmarkdownReport.Rmd`](https://github.com/ua-data7/DS-Tapas/blob/main/Workshops/Spring2023/redcapAPI/rmarkdownReport.Rmd)
+-   Install necessary packages
+
+<!-- -->
+
+    install.packages(c(
+    "knitr"
+    , "REDCapR"
+    , "REDCapTidieR"
+    , "tableone"
+    , "tidyverse"
+    , "usethis")) 
+
+## What is REDCap?
 
 ![](assets/images/redcapLogo.png){style="margin-bottom: -10px;" fig-align="center" width="650"}
 
@@ -40,6 +53,10 @@ So many thanks to [Richard Hanna](https://www.richardshanna.com/) for their work
 
 [^1]: For participants of the REDCap consortium
 
+::: footer
+So many thanks to [Richard Hanna](https://www.richardshanna.com/) for their work on REDCapTidieR!
+:::
+
 ::: notes
 REDCap is a powerful database solution used by many research institutions. The web interface offers a secure, accessible way to architect databases of varying complexity at no cost to the institution for joining the REDCap consortium.
 
@@ -48,7 +65,7 @@ You can access REDCap on the web from anywhere, and it can store any data you ca
 In my opinion, REDCap is strongest in it's front end UI ability to supply users with the tools to make databases quickly and with plenty of customization, but also provides complexity to those who wish to use it.
 :::
 
-## What is REDCap? {.smaller}
+## What is REDCap?
 
 ::: columns
 ::: {.column width="50%"}
@@ -139,9 +156,14 @@ Let's look at a tibble structure to see if we can piece why this is.
 ## The *redcap* problem
 
 -   Empty data introduced as an artifact of repeating instruments
+
 -   Data export is often times large and unwieldy
+
 -   Missing metadata linking field association to instruments
--   Row identification is confusing and inconsistentThere are a number of problems with this which anyone here who has worked with repeating instruments or longitudinal REDCap projects has probably run into.
+
+-   Row identification is confusing and inconsistent
+
+> There are a number of problems with this which anyone here who has worked with repeating instruments or longitudinal REDCap projects has probably run into.
 
 ::: notes
 First: empty data shown by all those `NA` values is not actually indicative of missingness, instead this is an artifact introduced as a side effect of having these compound keys tied to repeating instruments. This can force analysts to go back and either recreate data they need or jump through hoops to make up for data sparsity.
@@ -161,10 +183,16 @@ Fourth: Row identification is confusing and inconsistent. As we saw, compound ke
 Hanna R, Kadauke S, Porter E (2023). *REDCapTidieR: Extract 'REDCap' Databases into Tidy 'Tibble's*. https://chop-cgtinformatics.github.io/REDCapTidieR/, https://github.com/CHOP-CGTInformatics/REDCapTidieR.
 :::
 
-## Demo ▶️ {.center}
+## Let's Try! ▶️ {.center}
 
 -   REDCap API Creation 🔌 and storage in `.Renviron` 🔐
 
 -   `REDCapTidieR` to pull data 🧹
 
 -   Render a reproducible `.rmd` report 🧶
+
+## Buen Provecho!
+
+-   [Provide Tapas Feedback](https://uarizona.co1.qualtrics.com/jfe/form/SV_dmxCZsorVVr5lA2)
+-   [Request a consulatation](https://uarizona.co1.qualtrics.com/jfe/form/SV_7V8weDrKwCMbXCK)
+-   Find more [REDCap resources at UArizona](https://cb2.uahs.arizona.edu/redcap)
